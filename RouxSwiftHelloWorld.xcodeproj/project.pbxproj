@@ -13,7 +13,27 @@
 		A5AEB4B2246AF08E00E1F681 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5AEB4B0246AF08E00E1F681 /* Main.storyboard */; };
 		A5AEB4B4246AF09000E1F681 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5AEB4B3246AF09000E1F681 /* Assets.xcassets */; };
 		A5AEB4B7246AF09000E1F681 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5AEB4B5246AF09000E1F681 /* LaunchScreen.storyboard */; };
+		A5AEB4C4246AF1CA00E1F681 /* ScandyCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AEB4C3246AF1CA00E1F681 /* ScandyCore.framework */; };
+		A5AEB4C5246AF1CA00E1F681 /* ScandyCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5AEB4C3246AF1CA00E1F681 /* ScandyCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A5AEB4CB246B191900E1F681 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AEB4CA246B191900E1F681 /* GLKit.framework */; };
+		A5AEB4CD246B192100E1F681 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AEB4CC246B192000E1F681 /* Metal.framework */; };
+		A5AEB4CF246B193000E1F681 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AEB4CE246B193000E1F681 /* CoreImage.framework */; };
+		A5AEB4D1246B256500E1F681 /* ScandyCoreLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = A5AEB4D0246B256500E1F681 /* ScandyCoreLicense.txt */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A5AEB4C2246AF0F000E1F681 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A5AEB4C5246AF1CA00E1F681 /* ScandyCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A5AEB4A7246AF08E00E1F681 /* RouxSwiftHelloWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouxSwiftHelloWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,6 +44,11 @@
 		A5AEB4B3246AF09000E1F681 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5AEB4B6246AF09000E1F681 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5AEB4B8246AF09000E1F681 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5AEB4C3246AF1CA00E1F681 /* ScandyCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScandyCore.framework; path = Frameworks/ScandyCore.framework; sourceTree = "<group>"; };
+		A5AEB4CA246B191900E1F681 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		A5AEB4CC246B192000E1F681 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		A5AEB4CE246B193000E1F681 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		A5AEB4D0246B256500E1F681 /* ScandyCoreLicense.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ScandyCoreLicense.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +56,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5AEB4CF246B193000E1F681 /* CoreImage.framework in Frameworks */,
+				A5AEB4CD246B192100E1F681 /* Metal.framework in Frameworks */,
+				A5AEB4CB246B191900E1F681 /* GLKit.framework in Frameworks */,
+				A5AEB4C4246AF1CA00E1F681 /* ScandyCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +71,7 @@
 			children = (
 				A5AEB4A9246AF08E00E1F681 /* RouxSwiftHelloWorld */,
 				A5AEB4A8246AF08E00E1F681 /* Products */,
+				A5AEB4BE246AF0F000E1F681 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,8 +93,20 @@
 				A5AEB4B3246AF09000E1F681 /* Assets.xcassets */,
 				A5AEB4B5246AF09000E1F681 /* LaunchScreen.storyboard */,
 				A5AEB4B8246AF09000E1F681 /* Info.plist */,
+				A5AEB4D0246B256500E1F681 /* ScandyCoreLicense.txt */,
 			);
 			path = RouxSwiftHelloWorld;
+			sourceTree = "<group>";
+		};
+		A5AEB4BE246AF0F000E1F681 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A5AEB4CE246B193000E1F681 /* CoreImage.framework */,
+				A5AEB4CC246B192000E1F681 /* Metal.framework */,
+				A5AEB4CA246B191900E1F681 /* GLKit.framework */,
+				A5AEB4C3246AF1CA00E1F681 /* ScandyCore.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -77,6 +119,7 @@
 				A5AEB4A3246AF08E00E1F681 /* Sources */,
 				A5AEB4A4246AF08E00E1F681 /* Frameworks */,
 				A5AEB4A5246AF08E00E1F681 /* Resources */,
+				A5AEB4C2246AF0F000E1F681 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -99,6 +142,7 @@
 				TargetAttributes = {
 					A5AEB4A6246AF08E00E1F681 = {
 						CreatedOnToolsVersion = 11.4.1;
+						LastSwiftMigration = 1140;
 					};
 				};
 			};
@@ -126,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5AEB4B7246AF09000E1F681 /* LaunchScreen.storyboard in Resources */,
+				A5AEB4D1246B256500E1F681 /* ScandyCoreLicense.txt in Resources */,
 				A5AEB4B4246AF09000E1F681 /* Assets.xcassets in Resources */,
 				A5AEB4B2246AF08E00E1F681 /* Main.storyboard in Resources */,
 			);
@@ -200,6 +245,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -260,6 +306,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -284,8 +331,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8777VFSA3J;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/Frameworks/**",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Frameworks/ScandyCore.framework/include/\"";
 				INFOPLIST_FILE = RouxSwiftHelloWorld/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -293,6 +346,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = co.scandy.RouxSwiftHelloWorld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Frameworks/ScandyCore.framework/Headers/ScandyCore-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -302,8 +357,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8777VFSA3J;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/Frameworks/**",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/Frameworks/ScandyCore.framework/include/\"";
 				INFOPLIST_FILE = RouxSwiftHelloWorld/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -311,6 +372,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = co.scandy.RouxSwiftHelloWorld;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Frameworks/ScandyCore.framework/Headers/ScandyCore-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
