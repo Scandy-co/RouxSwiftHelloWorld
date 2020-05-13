@@ -41,6 +41,9 @@ class ViewController: GLKViewController {
       let scanner_type: ScandyCoreScannerType = ScandyCoreScannerType(rawValue: 5);
       ScandyCore.initializeScanner(scanner_type)
       ScandyCore.startPreview()
+      // Set the voxel size to some custom thing
+      let mm = 1.5
+      ScandyCore.setVoxelSize(mm * 1e-3)
     }
   }
 
