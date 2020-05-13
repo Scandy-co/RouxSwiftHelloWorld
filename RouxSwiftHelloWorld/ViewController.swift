@@ -9,15 +9,15 @@
 import GLKit
 
 class ViewController: GLKViewController {
-  var context: EAGLContext?
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
+    // Set the ScandyCoreLicense.txt
     let status = ScandyCore.setLicense()
     print("license status: ", status)
     
-    startPreview()
+    // call our function to start ScandyCore
+    turnOnScanner()
   }
   
   func requestCamera() -> Bool {
@@ -32,13 +32,13 @@ class ViewController: GLKViewController {
   }
 
   
-  func startPreview() {
+  func turnOnScanner() {
     if( requestCamera() ) {
       /*
        This is a little ugly, we could make this ScandyCoreScannerType into
        a better Swift class, but it works for now.
        */
-      var scanner_type: ScandyCoreScannerType = ScandyCoreScannerType(rawValue: 5);
+      let scanner_type: ScandyCoreScannerType = ScandyCoreScannerType(rawValue: 5);
       ScandyCore.initializeScanner(scanner_type)
       ScandyCore.startPreview()
     }
