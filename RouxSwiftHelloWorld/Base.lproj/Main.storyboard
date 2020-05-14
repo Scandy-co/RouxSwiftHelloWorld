@@ -14,13 +14,59 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="ScandyCoreView">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f10-fp-syk" userLabel="Start Scan Button">
+                                <rect key="frame" x="126" y="612" width="162" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Start Scanning"/>
+                                <connections>
+                                    <action selector="startScanningPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OHc-jf-5wD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YTi-wg-3YC" userLabel="Stop Scan Button">
+                                <rect key="frame" x="126" y="612" width="162" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Stop Scanning"/>
+                                <connections>
+                                    <action selector="stopScanningPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="L9l-6T-WXX"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwE-TC-rGK">
+                                <rect key="frame" x="121" y="740" width="173" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.80677604970000005" green="0.80677604970000005" blue="0.80677604970000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Start Preview"/>
+                                <connections>
+                                    <action selector="startPreviewPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NDY-xY-fpa"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QdH-eP-lqJ">
+                                <rect key="frame" x="121" y="682" width="173" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.85755128079999998" green="0.85755128079999998" blue="0.85755128079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Save Mesh">
+                                    <color key="titleColor" red="0.035738641109999997" green="0.85743199479999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveMeshPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gzi-8S-w20"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="saveMeshButton" destination="QdH-eP-lqJ" id="uWt-WC-Go9"/>
+                        <outlet property="startPreviewButton" destination="jwE-TC-rGK" id="0Do-Y2-yqJ"/>
+                        <outlet property="startScanButton" destination="f10-fp-syk" id="j0m-MP-tNJ"/>
+                        <outlet property="stopScanButton" destination="YTi-wg-3YC" id="h4q-X9-nt1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="138"/>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </scene>
     </scenes>
 </document>
