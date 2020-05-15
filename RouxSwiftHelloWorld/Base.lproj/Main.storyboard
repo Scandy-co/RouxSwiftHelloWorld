@@ -68,6 +68,20 @@
                                 <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZVM-CO-6oK" userLabel="V2 Mode Switch">
+                                <rect key="frame" x="308" y="101" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="toggleV2:" destination="BYZ-38-t0r" eventType="valueChanged" id="WuV-qj-O35"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enable unbounded" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8s-L8-VOI" userLabel="V2 Mode Label">
+                                <rect key="frame" x="259" y="72" width="144" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -78,6 +92,8 @@
                         <outlet property="startPreviewButton" destination="jwE-TC-rGK" id="0Do-Y2-yqJ"/>
                         <outlet property="startScanButton" destination="f10-fp-syk" id="j0m-MP-tNJ"/>
                         <outlet property="stopScanButton" destination="YTi-wg-3YC" id="h4q-X9-nt1"/>
+                        <outlet property="v2ModeLabel" destination="P8s-L8-VOI" id="TRd-4X-CaJ"/>
+                        <outlet property="v2ModeSwitch" destination="ZVM-CO-6oK" id="MQl-FN-Aip"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

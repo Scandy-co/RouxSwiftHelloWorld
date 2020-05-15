@@ -10,8 +10,7 @@ import GLKit
 
 class ViewController: GLKViewController {
     //MARK: Global variables
-    // Easily switch between scan modes for demoing
-    let SCAN_MODE_V2 = false
+    var SCAN_MODE_V2 = false;
     // the minimum size of scan volume's dimensions in meters
     let minSize = 0.2;
     // the maximum size of scan volume's dimensions in meters
@@ -24,6 +23,8 @@ class ViewController: GLKViewController {
     @IBOutlet weak var startPreviewButton: UIButton!
     @IBOutlet weak var scanSizeLabel: UILabel!
     @IBOutlet weak var scanSizeSlider: UISlider!
+    @IBOutlet weak var v2ModeSwitch: UISwitch!
+    @IBOutlet weak var v2ModeLabel: UILabel!
     
     //MARK: Actions
     
@@ -43,16 +44,18 @@ class ViewController: GLKViewController {
             ScandyCore.setVoxelSize(scan_size);
         } else {
             // update the scan size to a cube of scan_size x scan_size x scan_size
-            print(scan_size);
             ScandyCore.setScanSize(scan_size);
         }
         scanSizeLabel.text =  String(format: "Scan Size: %.3f m", scan_size);
     }
     
+    @IBAction func toggleV2(_ sender: Any) {
+        SCAN_MODE_V2 = v2ModeSwitch.isOn;
+        ScandyCore.toggleV2Scanning(v2ModeSwitch.isOn);
+    }
+    
     @IBAction func stopScanningPressed(_ sender: Any) {
         print("stop scanning pressed");
-        startScanButton.isHidden = true;
-        stopScanButton.isHidden = true;
         stopScanning();
         ScandyCore.generateMesh();
     }
@@ -106,47 +109,65 @@ class ViewController: GLKViewController {
     
     
     func turnOnScanner() {
-        scanSizeLabel.isHidden = false;
-        scanSizeSlider.isHidden = false;
-        startScanButton.isHidden = false;
-        stopScanButton.isHidden = true;
-        
-        startPreviewButton.isHidden = true;
-        saveMeshButton.isHidden = true;
+        renderPreviewScreen();
         
         if( requestCamera() ) {
-            /*
-             This is a little ugly, we could make this ScandyCoreScannerType into
-             a better Swift class, but it works for now.
-             */
+            //Default to scan mode v2
+            ScandyCore.toggleV2Scanning(SCAN_MODE_V2);
             let scanner_type: ScandyCoreScannerType = ScandyCoreScannerType(rawValue: 5);
             ScandyCore.initializeScanner(scanner_type)
             ScandyCore.startPreview()
-            // Set the voxel size to some custom thing
+            
+            // Set the voxel size to 2.0m
             let m = 2.0
             ScandyCore.setVoxelSize(m * 1e-3)
         }
     }
     
     func startScanning() {
-        //Render our buttons
-        stopScanButton.isHidden = false;
-        startScanButton.isHidden = true;
-        scanSizeLabel.isHidden = true;
-        scanSizeSlider.isHidden = true;
-
+        renderScanningScreen();
         ScandyCore.startScanning();
-
     }
     
     func stopScanning() {
-        stopScanButton.isHidden = true;
-        saveMeshButton.isHidden = false;
-        startPreviewButton.isHidden = false;
-        
+        renderMeshScreen();
         ScandyCore.stopScanning();
     }
     
+    func renderPreviewScreen(){
+        scanSizeLabel.isHidden = false;
+        scanSizeSlider.isHidden = false;
+        v2ModeSwitch.isHidden = false;
+        v2ModeLabel.isHidden = false;
+        startScanButton.isHidden = false;
+        
+        stopScanButton.isHidden = true;
+        startPreviewButton.isHidden = true;
+        saveMeshButton.isHidden = true;
+    }
+    
+    func renderScanningScreen(){
+        //Render our buttons
+        stopScanButton.isHidden = false;
+        
+        startScanButton.isHidden = true;
+        scanSizeLabel.isHidden = true;
+        scanSizeSlider.isHidden = true;
+        v2ModeSwitch.isHidden = true;
+        v2ModeLabel.isHidden = true;
+    }
+    
+    func renderMeshScreen(){
+        startPreviewButton.isHidden = false;
+        saveMeshButton.isHidden = false;
+
+        scanSizeLabel.isHidden = true;
+        scanSizeSlider.isHidden = true;
+        startScanButton.isHidden = true;
+        stopScanButton.isHidden = true;
+        v2ModeSwitch.isHidden = true;
+        v2ModeLabel.isHidden = true;
+    }
     
 }
 
