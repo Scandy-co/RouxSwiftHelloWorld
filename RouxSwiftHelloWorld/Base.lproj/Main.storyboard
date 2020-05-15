@@ -54,11 +54,27 @@
                                     <action selector="saveMeshPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gzi-8S-w20"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="pnn-vj-fZe" userLabel="Scan Size Slider">
+                                <rect key="frame" x="18" y="814" width="378" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="scanSizeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="QBD-ro-p4v"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Scan Size: 2.00m" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BtO-WT-Fs9">
+                                <rect key="frame" x="76" y="777" width="247" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="saveMeshButton" destination="QdH-eP-lqJ" id="uWt-WC-Go9"/>
+                        <outlet property="scanSizeLabel" destination="BtO-WT-Fs9" id="f4Y-AV-ZgY"/>
+                        <outlet property="scanSizeSlider" destination="pnn-vj-fZe" id="JZc-ac-OWm"/>
                         <outlet property="startPreviewButton" destination="jwE-TC-rGK" id="0Do-Y2-yqJ"/>
                         <outlet property="startScanButton" destination="f10-fp-syk" id="j0m-MP-tNJ"/>
                         <outlet property="stopScanButton" destination="YTi-wg-3YC" id="h4q-X9-nt1"/>
