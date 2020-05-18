@@ -51,7 +51,11 @@ class ViewController: GLKViewController {
     
     @IBAction func toggleV2(_ sender: Any) {
         SCAN_MODE_V2 = v2ModeSwitch.isOn;
+        ScandyCore.uninitializeScanner();
         ScandyCore.toggleV2Scanning(v2ModeSwitch.isOn);
+        let scanner_type: ScandyCoreScannerType = ScandyCoreScannerType(rawValue: 5);
+        ScandyCore.initializeScanner(scanner_type)
+        ScandyCore.startPreview()
     }
     
     @IBAction func stopScanningPressed(_ sender: Any) {
@@ -160,7 +164,7 @@ class ViewController: GLKViewController {
     func renderMeshScreen(){
         startPreviewButton.isHidden = false;
         saveMeshButton.isHidden = false;
-
+        
         scanSizeLabel.isHidden = true;
         scanSizeSlider.isHidden = true;
         startScanButton.isHidden = true;
