@@ -80,7 +80,7 @@ class ViewController: GLKViewController {
         let alertController = UIAlertController(title: "Mesh Saved", message:
             "file saved to \(filepath)", preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
-        
+        ScandyCore.saveMesh(filepath);
         self.present(alertController, animated: true, completion: nil)
         
     }
