@@ -15,7 +15,7 @@
 		A5AEB4B7246AF09000E1F681 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5AEB4B5246AF09000E1F681 /* LaunchScreen.storyboard */; };
 		A5AEB4C4246AF1CA00E1F681 /* ScandyCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5AEB4C3246AF1CA00E1F681 /* ScandyCore.framework */; };
 		A5AEB4C5246AF1CA00E1F681 /* ScandyCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5AEB4C3246AF1CA00E1F681 /* ScandyCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E2CB78ED246CA92B00D0F7FE /* ScandyCoreLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = A5AEB4D0246B256500E1F681 /* ScandyCoreLicense.txt */; };
+		E2BAD0352472FDF20040BF86 /* ScandyCoreLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = A5AEB4D0246B256500E1F681 /* ScandyCoreLicense.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -157,7 +157,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2CB78ED246CA92B00D0F7FE /* ScandyCoreLicense.txt in Resources */,
+				E2BAD0352472FDF20040BF86 /* ScandyCoreLicense.txt in Resources */,
 				A5AEB4B7246AF09000E1F681 /* LaunchScreen.storyboard in Resources */,
 				A5AEB4B4246AF09000E1F681 /* Assets.xcassets in Resources */,
 				A5AEB4B2246AF08E00E1F681 /* Main.storyboard in Resources */,
@@ -328,7 +328,7 @@
 					"$(inherited)",
 					"GLES_SILENCE_DEPRECATION=1",
 				);
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/Frameworks/ScandyCore.framework/include/";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/Frameworks/ScandyCore.framework/Headers/include/";
 				INFOPLIST_FILE = RouxSwiftHelloWorld/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -351,7 +351,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8777VFSA3J;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Frameworks";
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/Frameworks/ScandyCore.framework/include/";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/Frameworks/ScandyCore.framework/Headers/include/";
 				INFOPLIST_FILE = RouxSwiftHelloWorld/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
