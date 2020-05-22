@@ -11,9 +11,9 @@ import GLKit
 class ViewController: GLKViewController {
     //MARK: Global variables
     var SCAN_MODE_V2 = false;
-    // the minimum size of scan volume's dimensions in meters
+    // the minimum size of scan volume's dimensions in millimeters
     let minSize = 0.2;
-    // the maximum size of scan volume's dimensions in meters
+    // the maximum size of scan volume's dimensions in millimeters
     let maxSize = 5.0;
     
     //MARK: Properties
@@ -121,10 +121,9 @@ class ViewController: GLKViewController {
             let scanner_type: ScandyCoreScannerType = ScandyCoreScannerType(rawValue: 5);
             ScandyCore.initializeScanner(scanner_type)
             ScandyCore.startPreview()
-            
-            // Set the voxel size to 2.0m
-            let m = 2.0
-            ScandyCore.setVoxelSize(m * 1e-3)
+            // Set the voxel size to 1.0m
+            let mm = 1.0
+            ScandyCore.setVoxelSize(mm * 1e-3)
         }
     }
     
