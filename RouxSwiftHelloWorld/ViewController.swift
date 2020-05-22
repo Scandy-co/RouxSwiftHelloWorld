@@ -30,7 +30,7 @@ class ViewController: GLKViewController {
     }
     
     @IBAction func scanSizeChanged(_ sender: Any) {
-        setScanSize();
+        setResolution();
     }
     
     @IBAction func toggleV2(_ sender: Any) {
@@ -104,11 +104,11 @@ class ViewController: GLKViewController {
             ScandyCore.toggleV2Scanning(SCAN_MODE_V2);
             ScandyCore.initializeScanner()
             ScandyCore.startPreview()
-            setScanSize();
+            setResolution();
         }
     }
     
-    func setScanSize(){
+    func setResolution(){
         if(SCAN_MODE_V2){
             let minRes = 0.0005; // == 0.5 mm
             let maxRes = 0.006 // == 4 mm
