@@ -59,7 +59,7 @@ class ViewController: GLKViewController {
         let documentspath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0];
         let documentsURL = URL(fileURLWithPath: documentspath);
         let fileURL = documentsURL.appendingPathComponent(filename);
-        let filepath = fileURL.absoluteString;
+        let filepath = fileURL.path;
         print("saving file to \(filepath)");
         let alertController = UIAlertController(title: "Mesh Saved", message:
             "file saved to \(filepath)", preferredStyle: .alert)
