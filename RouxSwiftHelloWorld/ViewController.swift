@@ -10,11 +10,7 @@ import GLKit
 
 class ViewController: GLKViewController {
     //MARK: Global variables
-    var SCAN_MODE_V2 = false;
-    // the minimum size of scan volume's dimensions in meters
-    let minSize = 0.2;
-    // the maximum size of scan volume's dimensions in meters
-    let maxSize = 5.0;
+    var SCAN_MODE_V2 = true;
     
     //MARK: Properties
     @IBOutlet weak var stopScanButton: UIButton!
@@ -34,19 +30,7 @@ class ViewController: GLKViewController {
     }
     
     @IBAction func scanSizeChanged(_ sender: Any) {
-        let range = maxSize - minSize;
-        // normalize the scan size based on default slider value range [0, 1]
-        var scan_size = (range * Double(scanSizeSlider.value)) + minSize;
-        if(SCAN_MODE_V2){
-            // For scan mode v2, the resolution should be
-            scan_size *= 0.004; // Scale the 0.0 - 1.0 value to be a max of 4mm
-            scan_size = max(scan_size, 0.0005);
-            ScandyCore.setVoxelSize(scan_size);
-        } else {
-            // update the scan size to a cube of scan_size x scan_size x scan_size
-            ScandyCore.setScanSize(scan_size);
-        }
-        scanSizeLabel.text =  String(format: "Scan Size: %.3f m", scan_size);
+        setResolution();
     }
     
     @IBAction func toggleV2(_ sender: Any) {
@@ -75,7 +59,7 @@ class ViewController: GLKViewController {
         let documentspath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0];
         let documentsURL = URL(fileURLWithPath: documentspath);
         let fileURL = documentsURL.appendingPathComponent(filename);
-        let filepath = fileURL.absoluteString;
+        let filepath = fileURL.path;
         print("saving file to \(filepath)");
         let alertController = UIAlertController(title: "Mesh Saved", message:
             "file saved to \(filepath)", preferredStyle: .alert)
@@ -118,13 +102,32 @@ class ViewController: GLKViewController {
         if( requestCamera() ) {
             //Default to scan mode v2
             ScandyCore.toggleV2Scanning(SCAN_MODE_V2);
-            let scanner_type: ScandyCoreScannerType = ScandyCoreScannerType(rawValue: 5);
-            ScandyCore.initializeScanner(scanner_type)
+            ScandyCore.initializeScanner()
             ScandyCore.startPreview()
-            
-            // Set the voxel size to 2.0m
-            let m = 2.0
-            ScandyCore.setVoxelSize(m * 1e-3)
+            setResolution();
+        }
+    }
+    
+    func setResolution(){
+        if(SCAN_MODE_V2){
+            let minRes = 0.0005; // == 0.5 mm
+            let maxRes = 0.006 // == 4 mm
+            let range = maxRes - minRes;
+            // normalize the scan size based on default slider value range [0, 1]
+            //Make sure we are passing a Double to setVoxelSize
+            let voxelRes : Double = (range * Double(scanSizeSlider.value)) + minRes;
+            ScandyCore.setVoxelSize(voxelRes);
+            scanSizeLabel.text =  String(format: "Resolution: %.1f mm", voxelRes*1000);
+        } else {
+            // the minimum size of scan volume's dimensions in meters
+            let minSize = 0.2;
+            // the maximum size of scan volume's dimensions in meters
+            let maxSize = 5.0;
+            let range = maxSize - minSize;
+            //Make sure we are passing a Double to setScanSize
+            let scan_size : Double = (range * Double(scanSizeSlider.value)) + minSize;
+            ScandyCore.setScanSize(scan_size);
+            scanSizeLabel.text = String(format: "Scan Size: %.3f m", scan_size);
         }
     }
     
