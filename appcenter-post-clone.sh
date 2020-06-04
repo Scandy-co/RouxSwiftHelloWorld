@@ -4,7 +4,7 @@
 _dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 cd $_dir
 
-repo_name=$(basename $(git rev-parse --show-toplevel))
+repo_name="RouxSwiftHelloWorld"
 
 test_dir=$_dir/tmp
 mkdir -p $test_dir
