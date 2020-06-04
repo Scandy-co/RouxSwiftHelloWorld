@@ -4,6 +4,8 @@
 _dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 cd $_dir
 
+repo_name=$(basename $(git rev-parse --show-toplevel))
+
 test_dir=$_dir/tmp
 mkdir -p $test_dir
 
@@ -15,15 +17,13 @@ roux_dir_name=$(echo $roux_tar_name | awk -F ".tar.gz" '{print $1'})
 roux_dir_path=$test_dir/$roux_dir_name
 framework_name="ScandyCore.framework"
 
-# _dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-repo_name=$(basename $(git rev-parse --show-toplevel))
-
-echo "get $S3_ROUX_LICENSE"
+echo "get $S3_ROUX_LICENSE to $roux_license_path"
 aws s3 cp --quiet $S3_ROUX_LICENSE $roux_license_path
 echo "get $S3_ROUX_TAR"
 aws s3 cp --quiet $S3_ROUX_TAR $test_dir/$roux_tar_name
 
 pushd $test_dir
+# extract the tar
 tar -zxf $roux_tar_name
 popd
 
@@ -33,7 +33,6 @@ framework_dst=$_dir/Frameworks/$framework_name
 if [ -e $framework_dst ]; then
   rm -rf $framework_dst
 fi
-
 
 ln -s $roux_dir_path/$framework_name $framework_dst
 echo "Linked $framework_dst"
