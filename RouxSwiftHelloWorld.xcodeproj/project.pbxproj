@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A54252ED24898D6700162230 /* RouxSwiftHelloWorldUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54252EC24898D6700162230 /* RouxSwiftHelloWorldUITests.swift */; };
 		A5AEB4AB246AF08E00E1F681 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AEB4AA246AF08E00E1F681 /* AppDelegate.swift */; };
 		A5AEB4AD246AF08E00E1F681 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AEB4AC246AF08E00E1F681 /* SceneDelegate.swift */; };
 		A5AEB4AF246AF08E00E1F681 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AEB4AE246AF08E00E1F681 /* ViewController.swift */; };
@@ -17,6 +18,16 @@
 		A5AEB4C5246AF1CA00E1F681 /* ScandyCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A5AEB4C3246AF1CA00E1F681 /* ScandyCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E2BAD0352472FDF20040BF86 /* ScandyCoreLicense.txt in Resources */ = {isa = PBXBuildFile; fileRef = A5AEB4D0246B256500E1F681 /* ScandyCoreLicense.txt */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A54252EF24898D6700162230 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5AEB49F246AF08E00E1F681 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A5AEB4A6246AF08E00E1F681;
+			remoteInfo = RouxSwiftHelloWorld;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		A5AEB4C2246AF0F000E1F681 /* Embed Frameworks */ = {
@@ -33,6 +44,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A54252EA24898D6700162230 /* RouxSwiftHelloWorldUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RouxSwiftHelloWorldUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A54252EC24898D6700162230 /* RouxSwiftHelloWorldUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouxSwiftHelloWorldUITests.swift; sourceTree = "<group>"; };
+		A54252EE24898D6700162230 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5AEB4A7246AF08E00E1F681 /* RouxSwiftHelloWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouxSwiftHelloWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5AEB4AA246AF08E00E1F681 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5AEB4AC246AF08E00E1F681 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -46,6 +60,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A54252E724898D6700162230 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A5AEB4A4246AF08E00E1F681 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -57,10 +78,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A54252EB24898D6700162230 /* RouxSwiftHelloWorldUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A54252EC24898D6700162230 /* RouxSwiftHelloWorldUITests.swift */,
+				A54252EE24898D6700162230 /* Info.plist */,
+			);
+			path = RouxSwiftHelloWorldUITests;
+			sourceTree = "<group>";
+		};
 		A5AEB49E246AF08E00E1F681 = {
 			isa = PBXGroup;
 			children = (
 				A5AEB4A9246AF08E00E1F681 /* RouxSwiftHelloWorld */,
+				A54252EB24898D6700162230 /* RouxSwiftHelloWorldUITests */,
 				A5AEB4A8246AF08E00E1F681 /* Products */,
 				A5AEB4BE246AF0F000E1F681 /* Frameworks */,
 			);
@@ -70,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				A5AEB4A7246AF08E00E1F681 /* RouxSwiftHelloWorld.app */,
+				A54252EA24898D6700162230 /* RouxSwiftHelloWorldUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,6 +132,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A54252E924898D6700162230 /* RouxSwiftHelloWorldUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A54252F324898D6700162230 /* Build configuration list for PBXNativeTarget "RouxSwiftHelloWorldUITests" */;
+			buildPhases = (
+				A54252E624898D6700162230 /* Sources */,
+				A54252E724898D6700162230 /* Frameworks */,
+				A54252E824898D6700162230 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A54252F024898D6700162230 /* PBXTargetDependency */,
+			);
+			name = RouxSwiftHelloWorldUITests;
+			productName = RouxSwiftHelloWorldUITests;
+			productReference = A54252EA24898D6700162230 /* RouxSwiftHelloWorldUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		A5AEB4A6246AF08E00E1F681 /* RouxSwiftHelloWorld */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5AEB4BB246AF09000E1F681 /* Build configuration list for PBXNativeTarget "RouxSwiftHelloWorld" */;
@@ -124,10 +174,14 @@
 		A5AEB49F246AF08E00E1F681 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1140;
+				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = Scandy;
 				TargetAttributes = {
+					A54252E924898D6700162230 = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = A5AEB4A6246AF08E00E1F681;
+					};
 					A5AEB4A6246AF08E00E1F681 = {
 						CreatedOnToolsVersion = 11.4.1;
 						LastSwiftMigration = 1140;
@@ -148,11 +202,19 @@
 			projectRoot = "";
 			targets = (
 				A5AEB4A6246AF08E00E1F681 /* RouxSwiftHelloWorld */,
+				A54252E924898D6700162230 /* RouxSwiftHelloWorldUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A54252E824898D6700162230 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A5AEB4A5246AF08E00E1F681 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -167,6 +229,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A54252E624898D6700162230 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A54252ED24898D6700162230 /* RouxSwiftHelloWorldUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A5AEB4A3246AF08E00E1F681 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -178,6 +248,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A54252F024898D6700162230 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A5AEB4A6246AF08E00E1F681 /* RouxSwiftHelloWorld */;
+			targetProxy = A54252EF24898D6700162230 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A5AEB4B0246AF08E00E1F681 /* Main.storyboard */ = {
@@ -199,6 +277,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		A54252F124898D6700162230 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8777VFSA3J;
+				INFOPLIST_FILE = RouxSwiftHelloWorldUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.scandy.RouxSwiftHelloWorldUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RouxSwiftHelloWorld;
+			};
+			name = Debug;
+		};
+		A54252F224898D6700162230 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8777VFSA3J;
+				INFOPLIST_FILE = RouxSwiftHelloWorldUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = co.scandy.RouxSwiftHelloWorldUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RouxSwiftHelloWorld;
+			};
+			name = Release;
+		};
 		A5AEB4B9246AF09000E1F681 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -330,6 +448,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/Frameworks/ScandyCore.framework/Headers/include/";
 				INFOPLIST_FILE = RouxSwiftHelloWorld/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -353,6 +472,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Frameworks";
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/Frameworks/ScandyCore.framework/Headers/include/";
 				INFOPLIST_FILE = RouxSwiftHelloWorld/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -368,6 +488,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A54252F324898D6700162230 /* Build configuration list for PBXNativeTarget "RouxSwiftHelloWorldUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A54252F124898D6700162230 /* Debug */,
+				A54252F224898D6700162230 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A5AEB4A2246AF08E00E1F681 /* Build configuration list for PBXProject "RouxSwiftHelloWorld" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
