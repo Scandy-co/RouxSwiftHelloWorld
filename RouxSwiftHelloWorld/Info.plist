@@ -66,5 +66,7 @@
     <true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Roux uses the TrueDepth camera to capture 3D scans</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Roux uses your microphone when recording volumetric video</string>
 </dict>
 </plist>
