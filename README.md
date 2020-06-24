@@ -1,4 +1,4 @@
-# Roux IOS
+# RouxSwiftHelloWorld
 
 ## Tutorial Blog Posts
 For more in-depth tutorials for downloading and setting up Roux in your projects, visit 
@@ -28,36 +28,8 @@ Connect a device and build in Xcode.
 ## Using Roux in your own project
 To include Roux in your iOS project, there are a few extra steps you need to take.
 
-### 1. Roux License
-Before you can use Roux, you must call `setLicense` to validate your license.
-
-`setLicense` searches in your bundle resources for a file named ScandyCoreLicense.txt and then reads the contents to check its expiration and if the signature is valid.
-
-```
-// ViewController.swift
-// example file
-
-override func viewDidLoad() { 
-  super.viewDidLoad() 
-  // Do any additional setup after loading the view. ScandyCore.setLicense() 
-}
-
-
-```
-### 2. Scandy Core Framework
-The example app already has the `ScandyCore.framework` in `Framework Search Paths` and `ScandyCore.framework/Headers` in `Header Search Paths`. In your own project, please add your path to `ScandyCore.framework` in `Framework Search Paths` and `ScandyCore.framework/Headers/include` in `Header Search Paths` in Xcode. 
-
-You will also need to add `ScandyCore.framework` in `Frameworks, Libraries, and Embedded Content`. 
-
-In build settings, find 'Swift Compiler -- General' - > 'Objective-C Bridging Header' and add 
-```
-$SRCROOT/Frameworks/ScandyCore.framework/Headers/ScandyCore-Bridging-Header.h
-```
-
-
-
-### 3. Importing Scandy Core
-All basic functionality can be achieved by just importing the main header from the framework and including the interface header for access into the `ScandyCore` object.
+### 1. Importing Scandy Core
+All basic functionality can be achieved by just importing the main header from the framework for access into the `ScandyCore` object.
 
 ```
 // ViewController.swift
@@ -74,6 +46,41 @@ class ViewController: GLKViewController {
 
 
 ```
+#### ScandyCoreView
+It is ideal to simply use or subclass the GLKView `ScandyCoreView` with your own GLKViewController. The `ScandyCoreView` creates and manages the scanning view as well as the mesh view. It includes a `resizeView` function that automatically scales the viewports to fit the frame the view is contained within. `ScandyCoreView` is also configured to translate iOS touch interactions for interacting with a mesh.
+
+Open `main.storyboard`, expand the View Controller Scene and View Controller, and select 'View'. In the right hand Inspector Area, open the Identity inspector and select ScandyCoreView from the dropdown list labeled 'Class'.
+
+### 2. Roux License
+Before you can use Roux, you must call `setLicense` to validate your license.
+
+`setLicense` searches in your bundle resources for a file named ScandyCoreLicense.txt and then reads the contents to check its expiration and if the signature is valid.
+
+```
+// ViewController.swift
+// example file
+
+override func viewDidLoad() { 
+  super.viewDidLoad() 
+  // Do any additional setup after loading the view.
+  ScandyCore.setLicense() 
+}
+
+
+```
+### 3. Scandy Core Framework
+The example app already has the `ScandyCore.framework` in `Framework Search Paths` and `ScandyCore.framework/Headers/include` in `Header Search Paths`. In your own project, please add your path to `ScandyCore.framework` in `Framework Search Paths` and `ScandyCore.framework/Headers/include` in `Header Search Paths` in Xcode. 
+
+You will also need to add `ScandyCore.framework` in `Frameworks, Libraries, and Embedded Content`. 
+
+In build settings, find 'Swift Compiler -- General' - > 'Objective-C Bridging Header' and add 
+```
+$SRCROOT/Frameworks/ScandyCore.framework/Headers/ScandyCore-Bridging-Header.h
+```
+
+
+
+
 
 ## Order is important
 ### User Permissions
@@ -108,39 +115,17 @@ From there we are ready to start the scanning process.
 // ViewController.swift
 // example file
 
-class ViewController: GLKViewController { 	
-  // viewDidLoad() function here 	
-  func turnOnScanner() { 
     if(ScandyCore.hasCameraPermission()) { 	
       //Turn on v2 scanning 
-      ScandyCore.toggleV2Scanning(true); ScandyCore.initializeScanner() 
+      ScandyCore.toggleV2Scanning(true);
+      ScandyCore.initializeScanner() 
       ScandyCore.startPreview() 
       // Set the voxel size to 1.0mm 
-      let resolution = 0.001 // == 1.0mm ScandyCore.setVoxelSize(resolution) 
+      let resolution = 0.001 // == 1.0mm 
+      ScandyCore.setVoxelSize(resolution) 
     } 	
   } 
 }
 
 
 ```
-Then call the function right after you call `setLicense`
-```
-// ViewController.swift
-// example file
-
-override func viewDidLoad() { 
-  super.viewDidLoad() 
-  // Do any additional setup after loading the view. ScandyCore.setLicense() 
-}
-
-```
-
-
-## Visualization
-### ScandyCoreView
-It is ideal to simply use or subclass the GLKView `ScandyCoreView` with your own GLKViewController. The `ScandyCoreView` creates and manages the scanning view as well as the mesh view. It includes a `resizeView` function that automatically scales the viewports to fit the frame the view is contained within. `ScandyCoreView` is also configured to translate iOS touch interactions for interacting with a mesh.
-
-Open `main.storyboard`, expand the View Controller Scene and View Controller, and select 'View'. In the right hand Inspector Area, open the Identity inspector and select ScandyCoreView from the dropdown list labeled 'Class'.
-
-### Custom Views
-If you want to create your own view, checkout the [ScandyCoreSceneKitExample](https://github.com/Scandy-co/ScandyCoreSceneKitExample/blob/master/README.md#custom-views)
