@@ -1,6 +1,7 @@
 //
 //  ViewController.swift
 //  RouxSwiftHelloWorld
+//  Network demo - Mirror Device
 //
 //  Created by H. Cole Wiley on 5/12/20.
 //  Copyright © 2020 Scandy. All rights reserved.
@@ -21,6 +22,7 @@ class ViewController: GLKViewController {
     @IBOutlet weak var scanSizeSlider: UISlider!
     @IBOutlet weak var v2ModeSwitch: UISwitch!
     @IBOutlet weak var v2ModeLabel: UILabel!
+    @IBOutlet weak var connectToDeviceButton: UIButton!
     
     //MARK: Actions
     
@@ -74,6 +76,9 @@ class ViewController: GLKViewController {
         turnOnScanner();
     }
     
+    @IBAction func connectToScanningDevicePressed(_ sender: Any) {
+        print("connect to scanning device pressed")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -102,7 +107,7 @@ class ViewController: GLKViewController {
         if( requestCamera() ) {
             //Default to scan mode v2
             ScandyCore.toggleV2Scanning(SCAN_MODE_V2);
-            ScandyCore.initializeScanner()
+            ScandyCore.initializeScanner(ScandyCoreScannerType(rawValue: 4))
             ScandyCore.startPreview()
             setResolution();
         }
@@ -147,6 +152,7 @@ class ViewController: GLKViewController {
         v2ModeSwitch.isHidden = false;
         v2ModeLabel.isHidden = false;
         startScanButton.isHidden = false;
+        connectToDeviceButton.isHidden = false;
         
         stopScanButton.isHidden = true;
         startPreviewButton.isHidden = true;
@@ -157,6 +163,7 @@ class ViewController: GLKViewController {
         //Render our buttons
         stopScanButton.isHidden = false;
         
+        connectToDeviceButton.isHidden = true;
         startScanButton.isHidden = true;
         scanSizeLabel.isHidden = true;
         scanSizeSlider.isHidden = true;
@@ -168,6 +175,7 @@ class ViewController: GLKViewController {
         startPreviewButton.isHidden = false;
         saveMeshButton.isHidden = false;
         
+        connectToDeviceButton.isHidden = true;
         scanSizeLabel.isHidden = true;
         scanSizeSlider.isHidden = true;
         startScanButton.isHidden = true;
