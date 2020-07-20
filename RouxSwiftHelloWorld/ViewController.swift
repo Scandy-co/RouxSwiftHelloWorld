@@ -110,6 +110,8 @@ class ViewController: GLKViewController {
             ScandyCore.initializeScanner(ScandyCoreScannerType(rawValue: 4))
             ScandyCore.setReceiveRenderedStream(true)
             ScandyCore.setSendNetworkCommands(true)
+            let IPAddress = ScandyCore.getIPAddress();
+            print("IP Address:", IPAddress);
             ScandyCore.startPreview()
             setResolution();
         }
