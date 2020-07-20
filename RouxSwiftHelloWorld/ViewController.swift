@@ -23,6 +23,7 @@ class ViewController: GLKViewController {
     @IBOutlet weak var v2ModeSwitch: UISwitch!
     @IBOutlet weak var v2ModeLabel: UILabel!
     @IBOutlet weak var connectToDeviceButton: UIButton!
+    @IBOutlet weak var IPAddressLabel: UILabel!
     
     //MARK: Actions
     
@@ -110,8 +111,8 @@ class ViewController: GLKViewController {
             ScandyCore.initializeScanner(ScandyCoreScannerType(rawValue: 4))
             ScandyCore.setReceiveRenderedStream(true)
             ScandyCore.setSendNetworkCommands(true)
-            let IPAddress = ScandyCore.getIPAddress();
-            print("IP Address:", IPAddress);
+            let IPAddress = ScandyCore.getIPAddress() as String;
+            IPAddressLabel.text = "IP Address: " + IPAddress;
             ScandyCore.startPreview()
             setResolution();
         }
