@@ -108,6 +108,8 @@ class ViewController: GLKViewController {
             //Default to scan mode v2
             ScandyCore.toggleV2Scanning(SCAN_MODE_V2);
             ScandyCore.initializeScanner(ScandyCoreScannerType(rawValue: 4))
+            ScandyCore.setReceiveRenderedStream(true)
+            ScandyCore.setSendNetworkCommands(true)
             ScandyCore.startPreview()
             setResolution();
         }
