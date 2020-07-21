@@ -22,7 +22,6 @@ class ViewController: GLKViewController {
     @IBOutlet weak var scanSizeSlider: UISlider!
     @IBOutlet weak var v2ModeSwitch: UISwitch!
     @IBOutlet weak var v2ModeLabel: UILabel!
-    @IBOutlet weak var connectToDeviceButton: UIButton!
     @IBOutlet weak var IPAddressLabel: UILabel!
     
     //MARK: Actions
@@ -77,9 +76,6 @@ class ViewController: GLKViewController {
         turnOnScanner();
     }
     
-    @IBAction func connectToScanningDevicePressed(_ sender: Any) {
-        print("connect to scanning device pressed")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,13 +104,14 @@ class ViewController: GLKViewController {
         if( requestCamera() ) {
             //Default to scan mode v2
             ScandyCore.toggleV2Scanning(SCAN_MODE_V2);
+            ScandyCore.setReceiveRenderedStream(true);
+            ScandyCore.setSendNetworkCommands(true);
             ScandyCore.initializeScanner(ScandyCoreScannerType(rawValue: 4))
-            ScandyCore.setReceiveRenderedStream(true)
-            ScandyCore.setSendNetworkCommands(true)
             let IPAddress = ScandyCore.getIPAddress() as String;
             IPAddressLabel.text = "IP Address: " + IPAddress;
-            ScandyCore.startPreview()
-            setResolution();
+//            ScandyCore.setServerHost(IPAddress);
+//            ScandyCore.startPreview();
+//            setResolution();
         }
     }
     
@@ -157,7 +154,6 @@ class ViewController: GLKViewController {
         v2ModeSwitch.isHidden = false;
         v2ModeLabel.isHidden = false;
         startScanButton.isHidden = false;
-        connectToDeviceButton.isHidden = false;
         
         stopScanButton.isHidden = true;
         startPreviewButton.isHidden = true;
@@ -168,7 +164,6 @@ class ViewController: GLKViewController {
         //Render our buttons
         stopScanButton.isHidden = false;
         
-        connectToDeviceButton.isHidden = true;
         startScanButton.isHidden = true;
         scanSizeLabel.isHidden = true;
         scanSizeSlider.isHidden = true;
@@ -180,7 +175,6 @@ class ViewController: GLKViewController {
         startPreviewButton.isHidden = false;
         saveMeshButton.isHidden = false;
         
-        connectToDeviceButton.isHidden = true;
         scanSizeLabel.isHidden = true;
         scanSizeSlider.isHidden = true;
         startScanButton.isHidden = true;
