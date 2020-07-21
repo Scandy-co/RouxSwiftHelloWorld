@@ -19,6 +19,27 @@
                                 <rect key="frame" x="0.0" y="112" width="414" height="784"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KXN-EJ-uCm">
+                                        <rect key="frame" x="120" y="583" width="173" height="58"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Change Host"/>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwE-TC-rGK">
+                                        <rect key="frame" x="120" y="583" width="173" height="59"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.80677604970000005" green="0.80677604970000005" blue="0.80677604970000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Start Preview"/>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QdH-eP-lqJ">
+                                        <rect key="frame" x="120" y="534" width="173" height="51"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.85755128079999998" green="0.85755128079999998" blue="0.85755128079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Save Mesh">
+                                            <color key="titleColor" red="0.035738641109999997" green="0.85743199479999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                    </button>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eqS-l6-fxd">
                                         <rect key="frame" x="139" y="375" width="124" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -36,24 +57,15 @@
                                         <rect key="frame" x="139" y="417" width="124" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Connect"/>
+                                        <connections>
+                                            <action selector="connectToMirrorDeviceButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Srj-oX-QKi"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="NKd-3o-imt">
-                                <rect key="frame" x="85" y="73" width="245" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Mirror Device"/>
-                                    <segment title="Scanning Device"/>
-                                </segments>
-                                <connections>
-                                    <action selector="selectDeviceTypeToggled:" destination="BYZ-38-t0r" eventType="valueChanged" id="1ll-ra-DAk"/>
-                                </connections>
-                            </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="IP Address: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2j-Oa-prd">
-                                <rect key="frame" x="0.0" y="44" width="414" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2j-Oa-prd">
+                                <rect key="frame" x="0.0" y="44" width="414" height="0.0"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -80,18 +92,6 @@
                                             <action selector="toggleV2:" destination="BYZ-38-t0r" eventType="valueChanged" id="WuV-qj-O35"/>
                                         </connections>
                                     </switch>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QdH-eP-lqJ">
-                                        <rect key="frame" x="121" y="582" width="173" height="60"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.85755128079999998" green="0.85755128079999998" blue="0.85755128079999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Save Mesh">
-                                            <color key="titleColor" red="0.035738641109999997" green="0.85743199479999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="saveMeshPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gzi-8S-w20"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enable unbounded" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8s-L8-VOI" userLabel="V2 Mode Label">
                                         <rect key="frame" x="250" y="8" width="144" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -122,25 +122,35 @@
                                             <action selector="scanSizeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="QBD-ro-p4v"/>
                                         </connections>
                                     </slider>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwE-TC-rGK">
-                                        <rect key="frame" x="120" y="639" width="173" height="55"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.80677604970000005" green="0.80677604970000005" blue="0.80677604970000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Start Preview"/>
-                                        <connections>
-                                            <action selector="startPreviewPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NDY-xY-fpa"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="NKd-3o-imt">
+                                <rect key="frame" x="30" y="52" width="353" height="32"/>
+                                <segments>
+                                    <segment title="Mirror Device"/>
+                                    <segment title="Scanning Device"/>
+                                </segments>
+                                <connections>
+                                    <action selector="selectDeviceTypeToggled:" destination="BYZ-38-t0r" eventType="valueChanged" id="1ll-ra-DAk"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NKd-3o-imt" secondAttribute="trailing" constant="31" id="7k9-p2-U70"/>
+                            <constraint firstItem="W2j-Oa-prd" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="LdI-4x-2SX"/>
+                            <constraint firstItem="NKd-3o-imt" firstAttribute="top" secondItem="W2j-Oa-prd" secondAttribute="bottom" constant="8" id="Poh-dV-lXE"/>
+                            <constraint firstItem="W2j-Oa-prd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="k0o-hH-8e5"/>
+                            <constraint firstItem="NKd-3o-imt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="ubm-dl-j3Q"/>
+                            <constraint firstItem="W2j-Oa-prd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ycz-tK-1A0"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="IPAddressInput" destination="eqS-l6-fxd" id="p1G-HS-AKH"/>
                         <outlet property="IPAddressInputLabel" destination="eQi-kF-Ncb" id="koI-z0-F7b"/>
                         <outlet property="IPAddressLabel" destination="W2j-Oa-prd" id="PdQ-YA-4MF"/>
+                        <outlet property="changeHostButton" destination="KXN-EJ-uCm" id="Hc9-pf-rth"/>
                         <outlet property="connectToMirrorDeviceButton" destination="o1l-28-vZX" id="l8J-sL-0iu"/>
                         <outlet property="mirrorDeviceView" destination="5fo-9D-709" id="tfe-dd-Tey"/>
                         <outlet property="saveMeshButton" destination="QdH-eP-lqJ" id="uWt-WC-Go9"/>
@@ -148,7 +158,7 @@
                         <outlet property="scanSizeSlider" destination="pnn-vj-fZe" id="JZc-ac-OWm"/>
                         <outlet property="scanningDeviceView" destination="zID-dv-3GN" id="Jih-JM-lCB"/>
                         <outlet property="selectDeviceType" destination="NKd-3o-imt" id="rVo-0x-T8e"/>
-                        <outlet property="startPreviewButton" destination="jwE-TC-rGK" id="0Do-Y2-yqJ"/>
+                        <outlet property="startPreviewButton" destination="jwE-TC-rGK" id="SNp-Jt-rSC"/>
                         <outlet property="startScanButton" destination="f10-fp-syk" id="j0m-MP-tNJ"/>
                         <outlet property="stopScanButton" destination="YTi-wg-3YC" id="h4q-X9-nt1"/>
                         <outlet property="v2ModeLabel" destination="P8s-L8-VOI" id="TRd-4X-CaJ"/>

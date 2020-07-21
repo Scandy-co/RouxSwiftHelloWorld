@@ -12,47 +12,47 @@ import GLKit
 class ViewController: GLKViewController {
     //MARK: Global variables
     var SCAN_MODE_V2 = true;
-    let scanner_type: ScandyCoreScannerType = ScandyCoreScannerType(rawValue: 4);
-
+    var NETWORK_SCANNER: ScandyCoreScannerType =  ScandyCoreScannerType(rawValue: 4);
+    
     //MARK: Properties
     @IBOutlet weak var selectDeviceType: UISegmentedControl!
     @IBOutlet weak var IPAddressLabel: UILabel!
-
-    //Mirror Device
+    
+    //Mirror Device UI
     @IBOutlet weak var mirrorDeviceView: UIView!
     @IBOutlet weak var stopScanButton: UIButton!
     @IBOutlet weak var startScanButton: UIButton!
-    @IBOutlet weak var saveMeshButton: UIButton!
-    @IBOutlet weak var startPreviewButton: UIButton!
     @IBOutlet weak var scanSizeLabel: UILabel!
     @IBOutlet weak var scanSizeSlider: UISlider!
     @IBOutlet weak var v2ModeSwitch: UISwitch!
     @IBOutlet weak var v2ModeLabel: UILabel!
     @IBOutlet weak var connectToMirrorDeviceButton: UIButton!
     
-    //Scanning Device
+    //Scanning Device UI
     @IBOutlet weak var scanningDeviceView: UIView!
     @IBOutlet weak var IPAddressInputLabel: UILabel!
     @IBOutlet weak var IPAddressInput: UITextField!
+    @IBOutlet weak var changeHostButton: UIButton!
+    @IBOutlet weak var saveMeshButton: UIButton!
+    @IBOutlet weak var startPreviewButton: UIButton!
+    
     
     //MARK: Actions
-    
     @IBAction func selectDeviceTypeToggled(_ sender: Any) {
+        ScandyCore.uninitializeScanner();
         let deviceType = selectDeviceType.selectedSegmentIndex;
         switch(deviceType){
         case 0:
             //Mirror Device
-            mirrorDeviceView.isHidden = false;
-            scanningDeviceView.isHidden = true;
+            initializeMirrorDevice();
         case 1:
             //Scanning Device
-            scanningDeviceView.isHidden = false;
-            mirrorDeviceView.isHidden = true;
+            initializeScanningDevice();
         default:
             return;
         }
     }
-    
+    //MARK: Mirror Device Actions
     @IBAction func startScanningPressed(_ sender: Any) {
         print("start scanning pressed");
         startScanning();
@@ -66,7 +66,7 @@ class ViewController: GLKViewController {
         SCAN_MODE_V2 = v2ModeSwitch.isOn;
         ScandyCore.uninitializeScanner();
         ScandyCore.toggleV2Scanning(v2ModeSwitch.isOn);
-        ScandyCore.initializeScanner(scanner_type)
+        ScandyCore.initializeScanner(NETWORK_SCANNER)
         ScandyCore.startPreview()
     }
     
@@ -76,43 +76,64 @@ class ViewController: GLKViewController {
         ScandyCore.generateMesh();
     }
     
-    @IBAction func saveMeshPressed(_ sender: Any) {
-        let date = Date();
-        let formatter = DateFormatter();
-        formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss";
-        let id = formatter.string(from: date);
-        // NOTE: You can change this to: obj, ply, or stl
-        let filetype = "ply";
-        let filename = "rouxiosexample_\(id).\(filetype)";
-        let documentspath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0];
-        let documentsURL = URL(fileURLWithPath: documentspath);
-        let fileURL = documentsURL.appendingPathComponent(filename);
-        let filepath = fileURL.path;
-        print("saving file to \(filepath)");
-        let alertController = UIAlertController(title: "Mesh Saved", message:
-            "file saved to \(filepath)", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
-        ScandyCore.saveMesh(filepath);
-        self.present(alertController, animated: true, completion: nil)
-        
+    //MARK: Mirror Device Actions
+    @IBAction func connectToMirrorDeviceButtonPressed(_ sender: Any) {
+        view.endEditing(true);
+        let ip_address = IPAddressInput.text;
+        let discovered_hosts = ScandyCore.getDiscoveredHosts() as! [String];
+        if(discovered_hosts.contains(ip_address!)){
+            ScandyCore.connect(toCommandHost: ip_address);
+            ScandyCore.setServerHost(ip_address);
+            IPAddressLabel.text = "Connected to: \(ip_address)"
+        }
     }
     
-    @IBAction func startPreviewPressed(_ sender: Any) {
-        print("start preview pressed");
-        turnOnScanner();
-    }
+//    @IBAction func saveMeshPressed(_ sender: Any) {
+//        let date = Date();
+//        let formatter = DateFormatter();
+//        formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss";
+//        let id = formatter.string(from: date);
+//        // NOTE: You can change this to: obj, ply, or stl
+//        let filetype = "ply";
+//        let filename = "rouxiosexample_\(id).\(filetype)";
+//        let documentspath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0];
+//        let documentsURL = URL(fileURLWithPath: documentspath);
+//        let fileURL = documentsURL.appendingPathComponent(filename);
+//        let filepath = fileURL.path;
+//        print("saving file to \(filepath)");
+//        let alertController = UIAlertController(title: "Mesh Saved", message:
+//            "file saved to \(filepath)", preferredStyle: .alert)
+//        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+//        ScandyCore.saveMesh(filepath);
+//        self.present(alertController, animated: true, completion: nil)
+//
+//    }
+    
+//    @IBAction func startPreviewPressed(_ sender: Any) {
+//        print("start preview pressed");
+//    }
     
     
     override func viewDidLoad() {
         super.viewDidLoad();
         ScandyCore.setLicense();
-        startMirrorDevice();
+        initializeMirrorDevice();
     }
     
-    func startMirrorDevice(){
+    func initializeMirrorDevice(){
         mirrorDeviceView.isHidden = false;
         scanningDeviceView.isHidden = true;
-        turnOnScanner();
+        renderPreviewScreen(device_type: "mirror");
+        if( requestCamera() ) {
+            ScandyCore.setReceiveRenderedStream(true);
+            ScandyCore.setSendNetworkCommands(true);
+            ScandyCore.initializeScanner(NETWORK_SCANNER);
+            let IPAddress = ScandyCore.getIPAddress() as String;
+            IPAddressLabel.text = "IP Address: " + IPAddress;
+            ScandyCore.setServerHost(IPAddress);
+            ScandyCore.startPreview();
+            setResolution();
+        }
     }
     
     func requestCamera() -> Bool {
@@ -124,23 +145,6 @@ class ViewController: GLKViewController {
             print("user has denied permission to camera")
         }
         return false
-    }
-    
-    
-    
-    func turnOnScanner() {
-        renderPreviewScreen();
-//        if( requestCamera() ) {
-//            //Default to scan mode v2
-//            ScandyCore.setReceiveRenderedStream(true);
-//            ScandyCore.setSendNetworkCommands(true);
-//            ScandyCore.initializeScanner(scanner_type);
-//            let IPAddress = ScandyCore.getIPAddress() as String;
-//            IPAddressLabel.text = "IP Address: " + IPAddress;
-//            ScandyCore.setServerHost(IPAddress);
-//            ScandyCore.startPreview();
-//            setResolution();
-//        }
     }
     
     func setResolution(){
@@ -166,6 +170,29 @@ class ViewController: GLKViewController {
         }
     }
     
+    func initializeScanningDevice(){
+        mirrorDeviceView.isHidden = true;
+        scanningDeviceView.isHidden = false;
+//        renderPreviewScreen(device_type: "scanner");
+        if( requestCamera() ) {
+            ScandyCore.setSendRenderedStream(true);
+            ScandyCore.setReceiveNetworkCommands(true);
+            ScandyCore.initializeScanner();
+            IPAddressLabel.text = "Connected to: ";
+            renderConnectToDeviceScreen();
+        }
+    }
+    
+    func renderConnectToDeviceScreen(){
+        IPAddressInput.isHidden = false;
+        IPAddressInputLabel.isHidden = false;
+        connectToMirrorDeviceButton.isHidden = false;
+        
+        changeHostButton.isHidden = true;
+        saveMeshButton.isHidden = true;
+        startPreviewButton.isHidden = true;
+    }
+    
     func startScanning() {
         renderScanningScreen();
         ScandyCore.startScanning();
@@ -176,16 +203,30 @@ class ViewController: GLKViewController {
         ScandyCore.stopScanning();
     }
     
-    func renderPreviewScreen(){
-        scanSizeLabel.isHidden = false;
-        scanSizeSlider.isHidden = false;
-        v2ModeSwitch.isHidden = false;
-        v2ModeLabel.isHidden = false;
-        startScanButton.isHidden = false;
-        
-        stopScanButton.isHidden = true;
-        startPreviewButton.isHidden = true;
-        saveMeshButton.isHidden = true;
+    func renderPreviewScreen(device_type: String){
+        switch(device_type){
+        case "mirror":
+            scanSizeLabel.isHidden = false;
+            scanSizeSlider.isHidden = false;
+            v2ModeSwitch.isHidden = false;
+            v2ModeLabel.isHidden = false;
+            startScanButton.isHidden = false;
+            
+            stopScanButton.isHidden = true;
+            startPreviewButton.isHidden = true;
+            saveMeshButton.isHidden = true;
+            return
+        case "scanner":
+            changeHostButton.isHidden = true;
+            saveMeshButton.isHidden = true;
+            startPreviewButton.isHidden = true;
+            IPAddressInputLabel.isHidden = true;
+            IPAddressInput.isHidden = true;
+            connectToMirrorDeviceButton.isHidden = true;
+            return
+        default:
+            return;
+        }
     }
     
     func renderScanningScreen(){
