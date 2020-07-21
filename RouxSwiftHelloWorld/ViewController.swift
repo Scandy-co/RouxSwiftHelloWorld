@@ -40,7 +40,7 @@ class ViewController: GLKViewController {
         SCAN_MODE_V2 = v2ModeSwitch.isOn;
         ScandyCore.uninitializeScanner();
         ScandyCore.toggleV2Scanning(v2ModeSwitch.isOn);
-        let scanner_type: ScandyCoreScannerType = ScandyCoreScannerType(rawValue: 5);
+        let scanner_type: ScandyCoreScannerType = ScandyCoreScannerType(rawValue: 4);
         ScandyCore.initializeScanner(scanner_type)
         ScandyCore.startPreview()
     }
