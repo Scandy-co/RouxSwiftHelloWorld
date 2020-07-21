@@ -15,6 +15,11 @@ class ViewController: GLKViewController {
     let scanner_type: ScandyCoreScannerType = ScandyCoreScannerType(rawValue: 4);
 
     //MARK: Properties
+    @IBOutlet weak var selectDeviceType: UISegmentedControl!
+    @IBOutlet weak var IPAddressLabel: UILabel!
+
+    //Mirror Device
+    @IBOutlet weak var mirrorDeviceView: UIView!
     @IBOutlet weak var stopScanButton: UIButton!
     @IBOutlet weak var startScanButton: UIButton!
     @IBOutlet weak var saveMeshButton: UIButton!
@@ -23,9 +28,30 @@ class ViewController: GLKViewController {
     @IBOutlet weak var scanSizeSlider: UISlider!
     @IBOutlet weak var v2ModeSwitch: UISwitch!
     @IBOutlet weak var v2ModeLabel: UILabel!
-    @IBOutlet weak var IPAddressLabel: UILabel!
+    @IBOutlet weak var connectToMirrorDeviceButton: UIButton!
+    
+    //Scanning Device
+    @IBOutlet weak var scanningDeviceView: UIView!
+    @IBOutlet weak var IPAddressInputLabel: UILabel!
+    @IBOutlet weak var IPAddressInput: UITextField!
     
     //MARK: Actions
+    
+    @IBAction func selectDeviceTypeToggled(_ sender: Any) {
+        let deviceType = selectDeviceType.selectedSegmentIndex;
+        switch(deviceType){
+        case 0:
+            //Mirror Device
+            mirrorDeviceView.isHidden = false;
+            scanningDeviceView.isHidden = true;
+        case 1:
+            //Scanning Device
+            scanningDeviceView.isHidden = false;
+            mirrorDeviceView.isHidden = true;
+        default:
+            return;
+        }
+    }
     
     @IBAction func startScanningPressed(_ sender: Any) {
         print("start scanning pressed");
@@ -78,11 +104,14 @@ class ViewController: GLKViewController {
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Set the ScandyCoreLicense.txt
-        let status = ScandyCore.setLicense()
-        print("license status: ", status)
-        // call our function to start ScandyCore
+        super.viewDidLoad();
+        ScandyCore.setLicense();
+        startMirrorDevice();
+    }
+    
+    func startMirrorDevice(){
+        mirrorDeviceView.isHidden = false;
+        scanningDeviceView.isHidden = true;
         turnOnScanner();
     }
     
@@ -98,20 +127,20 @@ class ViewController: GLKViewController {
     }
     
     
+    
     func turnOnScanner() {
         renderPreviewScreen();
-        
-        if( requestCamera() ) {
-            //Default to scan mode v2
-            ScandyCore.setReceiveRenderedStream(true);
-            ScandyCore.setSendNetworkCommands(true);
-            ScandyCore.initializeScanner(scanner_type);
-            let IPAddress = ScandyCore.getIPAddress() as String;
-            IPAddressLabel.text = "IP Address: " + IPAddress;
-            ScandyCore.setServerHost(IPAddress);
-            ScandyCore.startPreview();
-            setResolution();
-        }
+//        if( requestCamera() ) {
+//            //Default to scan mode v2
+//            ScandyCore.setReceiveRenderedStream(true);
+//            ScandyCore.setSendNetworkCommands(true);
+//            ScandyCore.initializeScanner(scanner_type);
+//            let IPAddress = ScandyCore.getIPAddress() as String;
+//            IPAddressLabel.text = "IP Address: " + IPAddress;
+//            ScandyCore.setServerHost(IPAddress);
+//            ScandyCore.startPreview();
+//            setResolution();
+//        }
     }
     
     func setResolution(){
