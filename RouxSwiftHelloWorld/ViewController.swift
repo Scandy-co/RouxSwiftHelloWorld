@@ -12,7 +12,8 @@ import GLKit
 class ViewController: GLKViewController {
     //MARK: Global variables
     var SCAN_MODE_V2 = true;
-    
+    let scanner_type: ScandyCoreScannerType = ScandyCoreScannerType(rawValue: 4);
+
     //MARK: Properties
     @IBOutlet weak var stopScanButton: UIButton!
     @IBOutlet weak var startScanButton: UIButton!
@@ -39,7 +40,6 @@ class ViewController: GLKViewController {
         SCAN_MODE_V2 = v2ModeSwitch.isOn;
         ScandyCore.uninitializeScanner();
         ScandyCore.toggleV2Scanning(v2ModeSwitch.isOn);
-        let scanner_type: ScandyCoreScannerType = ScandyCoreScannerType(rawValue: 4);
         ScandyCore.initializeScanner(scanner_type)
         ScandyCore.startPreview()
     }
@@ -103,15 +103,14 @@ class ViewController: GLKViewController {
         
         if( requestCamera() ) {
             //Default to scan mode v2
-            ScandyCore.toggleV2Scanning(SCAN_MODE_V2);
             ScandyCore.setReceiveRenderedStream(true);
             ScandyCore.setSendNetworkCommands(true);
-            ScandyCore.initializeScanner(ScandyCoreScannerType(rawValue: 4))
+            ScandyCore.initializeScanner(scanner_type);
             let IPAddress = ScandyCore.getIPAddress() as String;
             IPAddressLabel.text = "IP Address: " + IPAddress;
-//            ScandyCore.setServerHost(IPAddress);
-//            ScandyCore.startPreview();
-//            setResolution();
+            ScandyCore.setServerHost(IPAddress);
+            ScandyCore.startPreview();
+            setResolution();
         }
     }
     
