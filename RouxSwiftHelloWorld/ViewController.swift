@@ -79,39 +79,47 @@ class ViewController: GLKViewController {
     //MARK: Mirror Device Actions
     @IBAction func connectToMirrorDeviceButtonPressed(_ sender: Any) {
         view.endEditing(true);
-        let ip_address = IPAddressInput.text;
+        let ip_address = IPAddressInput.text! as String;
         let discovered_hosts = ScandyCore.getDiscoveredHosts() as! [String];
-        if(discovered_hosts.contains(ip_address!)){
+        if(discovered_hosts.contains(ip_address)){
             ScandyCore.connect(toCommandHost: ip_address);
             ScandyCore.setServerHost(ip_address);
-            IPAddressLabel.text = "Connected to: \(ip_address)"
+            IPAddressLabel.text = "Connected to: \(ip_address)";
+            renderPreviewScreen(device_type: "scanner");
+        } else {
+            let alertController = UIAlertController(title: "Host Not Found", message:
+                "Could not find mirror device at \(ip_address). Please try again.", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+
+            self.present(alertController, animated: true, completion: nil)
+            IPAddressInput.text = "";
         }
     }
     
-//    @IBAction func saveMeshPressed(_ sender: Any) {
-//        let date = Date();
-//        let formatter = DateFormatter();
-//        formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss";
-//        let id = formatter.string(from: date);
-//        // NOTE: You can change this to: obj, ply, or stl
-//        let filetype = "ply";
-//        let filename = "rouxiosexample_\(id).\(filetype)";
-//        let documentspath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0];
-//        let documentsURL = URL(fileURLWithPath: documentspath);
-//        let fileURL = documentsURL.appendingPathComponent(filename);
-//        let filepath = fileURL.path;
-//        print("saving file to \(filepath)");
-//        let alertController = UIAlertController(title: "Mesh Saved", message:
-//            "file saved to \(filepath)", preferredStyle: .alert)
-//        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
-//        ScandyCore.saveMesh(filepath);
-//        self.present(alertController, animated: true, completion: nil)
-//
-//    }
+    //    @IBAction func saveMeshPressed(_ sender: Any) {
+    //        let date = Date();
+    //        let formatter = DateFormatter();
+    //        formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss";
+    //        let id = formatter.string(from: date);
+    //        // NOTE: You can change this to: obj, ply, or stl
+    //        let filetype = "ply";
+    //        let filename = "rouxiosexample_\(id).\(filetype)";
+    //        let documentspath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0];
+    //        let documentsURL = URL(fileURLWithPath: documentspath);
+    //        let fileURL = documentsURL.appendingPathComponent(filename);
+    //        let filepath = fileURL.path;
+    //        print("saving file to \(filepath)");
+    //        let alertController = UIAlertController(title: "Mesh Saved", message:
+    //            "file saved to \(filepath)", preferredStyle: .alert)
+    //        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+    //        ScandyCore.saveMesh(filepath);
+    //        self.present(alertController, animated: true, completion: nil)
+    //
+    //    }
     
-//    @IBAction func startPreviewPressed(_ sender: Any) {
-//        print("start preview pressed");
-//    }
+    //    @IBAction func startPreviewPressed(_ sender: Any) {
+    //        print("start preview pressed");
+    //    }
     
     
     override func viewDidLoad() {
@@ -173,7 +181,6 @@ class ViewController: GLKViewController {
     func initializeScanningDevice(){
         mirrorDeviceView.isHidden = true;
         scanningDeviceView.isHidden = false;
-//        renderPreviewScreen(device_type: "scanner");
         if( requestCamera() ) {
             ScandyCore.setSendRenderedStream(true);
             ScandyCore.setReceiveNetworkCommands(true);

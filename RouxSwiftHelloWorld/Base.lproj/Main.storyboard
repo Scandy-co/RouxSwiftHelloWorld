@@ -41,20 +41,20 @@
                                         </state>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eqS-l6-fxd">
-                                        <rect key="frame" x="139" y="375" width="124" height="34"/>
+                                        <rect key="frame" x="139" y="291" width="124" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter IP Address of Mirror Device" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQi-kF-Ncb">
-                                        <rect key="frame" x="76" y="332" width="261" height="35"/>
+                                        <rect key="frame" x="76" y="241" width="261" height="42"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o1l-28-vZX">
-                                        <rect key="frame" x="139" y="417" width="124" height="40"/>
+                                        <rect key="frame" x="139" y="333" width="124" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Connect"/>
                                         <connections>
@@ -72,6 +72,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="NKd-3o-imt">
+                                <rect key="frame" x="30" y="52" width="353" height="32"/>
+                                <segments>
+                                    <segment title="Mirror Device"/>
+                                    <segment title="Scanning Device"/>
+                                </segments>
+                                <connections>
+                                    <action selector="selectDeviceTypeToggled:" destination="BYZ-38-t0r" eventType="valueChanged" id="1ll-ra-DAk"/>
+                                </connections>
+                            </segmentedControl>
                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5fo-9D-709">
                                 <rect key="frame" x="0.0" y="112" width="414" height="784"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -125,16 +135,6 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="NKd-3o-imt">
-                                <rect key="frame" x="30" y="52" width="353" height="32"/>
-                                <segments>
-                                    <segment title="Mirror Device"/>
-                                    <segment title="Scanning Device"/>
-                                </segments>
-                                <connections>
-                                    <action selector="selectDeviceTypeToggled:" destination="BYZ-38-t0r" eventType="valueChanged" id="1ll-ra-DAk"/>
-                                </connections>
-                            </segmentedControl>
                         </subviews>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NKd-3o-imt" secondAttribute="trailing" constant="31" id="7k9-p2-U70"/>
