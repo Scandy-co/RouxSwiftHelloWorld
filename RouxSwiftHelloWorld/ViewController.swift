@@ -1,7 +1,7 @@
 //
 //  ViewController.swift
 //  RouxSwiftHelloWorld
-//  Network demo - Mirror Device
+//  Network demo
 //
 //  Created by H. Cole Wiley on 5/12/20.
 //  Copyright © 2020 Scandy. All rights reserved.
@@ -139,8 +139,8 @@ class ViewController: GLKViewController {
             let IPAddress = ScandyCore.getIPAddress() as String;
             IPAddressLabel.text = "IP Address: " + IPAddress;
             ScandyCore.setServerHost(IPAddress);
-            ScandyCore.startPreview();
             setResolution();
+            ScandyCore.startPreview();
         }
     }
     
@@ -208,6 +208,13 @@ class ViewController: GLKViewController {
     func stopScanning() {
         renderMeshScreen();
         ScandyCore.stopScanning();
+        let alertController = UIAlertController(title: "Scanning Complete", message:
+            "Mesh has been generated on scanning device.", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { action in
+            ScandyCore.startPreview();
+            self.renderPreviewScreen(device_type: "mirror");
+        }))
+        self.present(alertController, animated: true)
     }
     
     func renderPreviewScreen(device_type: String){

@@ -64,30 +64,21 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2j-Oa-prd">
-                                <rect key="frame" x="0.0" y="44" width="414" height="0.0"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2j-Oa-prd">
+                                <rect key="frame" x="0.0" y="32" width="414" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="NKd-3o-imt">
-                                <rect key="frame" x="30" y="52" width="353" height="32"/>
-                                <segments>
-                                    <segment title="Mirror Device"/>
-                                    <segment title="Scanning Device"/>
-                                </segments>
-                                <connections>
-                                    <action selector="selectDeviceTypeToggled:" destination="BYZ-38-t0r" eventType="valueChanged" id="1ll-ra-DAk"/>
-                                </connections>
-                            </segmentedControl>
                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5fo-9D-709">
                                 <rect key="frame" x="0.0" y="112" width="414" height="784"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f10-fp-syk" userLabel="Start Scan Button">
-                                        <rect key="frame" x="126" y="482" width="162" height="52"/>
+                                        <rect key="frame" x="126" y="482" width="164" height="52"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Start Scanning"/>
@@ -96,28 +87,28 @@
                                         </connections>
                                     </button>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZVM-CO-6oK" userLabel="V2 Mode Switch">
-                                        <rect key="frame" x="299" y="37" width="49" height="31"/>
+                                        <rect key="frame" x="299" y="37" width="51" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="toggleV2:" destination="BYZ-38-t0r" eventType="valueChanged" id="WuV-qj-O35"/>
                                         </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enable unbounded" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8s-L8-VOI" userLabel="V2 Mode Label">
-                                        <rect key="frame" x="250" y="8" width="144" height="21"/>
+                                        <rect key="frame" x="250" y="8" width="146" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Scan Size: 1.00m" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BtO-WT-Fs9">
-                                        <rect key="frame" x="83" y="685" width="247" height="29"/>
+                                        <rect key="frame" x="83" y="654" width="249" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YTi-wg-3YC" userLabel="Stop Scan Button">
-                                        <rect key="frame" x="125" y="531" width="162" height="52"/>
+                                        <rect key="frame" x="125" y="529" width="164" height="54"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Stop Scanning"/>
@@ -126,7 +117,7 @@
                                         </connections>
                                     </button>
                                     <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="pnn-vj-fZe" userLabel="Scan Size Slider">
-                                        <rect key="frame" x="18" y="713" width="378" height="30"/>
+                                        <rect key="frame" x="18" y="691" width="380" height="31"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="scanSizeChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="QBD-ro-p4v"/>
@@ -135,15 +126,18 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="NKd-3o-imt">
+                                <rect key="frame" x="31" y="68" width="353" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Mirror Device"/>
+                                    <segment title="Scanning Device"/>
+                                </segments>
+                                <connections>
+                                    <action selector="selectDeviceTypeToggled:" destination="BYZ-38-t0r" eventType="valueChanged" id="1ll-ra-DAk"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
-                        <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="NKd-3o-imt" secondAttribute="trailing" constant="31" id="7k9-p2-U70"/>
-                            <constraint firstItem="W2j-Oa-prd" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="LdI-4x-2SX"/>
-                            <constraint firstItem="NKd-3o-imt" firstAttribute="top" secondItem="W2j-Oa-prd" secondAttribute="bottom" constant="8" id="Poh-dV-lXE"/>
-                            <constraint firstItem="W2j-Oa-prd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="k0o-hH-8e5"/>
-                            <constraint firstItem="NKd-3o-imt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="ubm-dl-j3Q"/>
-                            <constraint firstItem="W2j-Oa-prd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ycz-tK-1A0"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
