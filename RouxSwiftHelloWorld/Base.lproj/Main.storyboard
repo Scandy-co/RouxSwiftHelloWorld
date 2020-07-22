@@ -29,7 +29,10 @@
                                         <rect key="frame" x="120" y="583" width="173" height="59"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.80677604970000005" green="0.80677604970000005" blue="0.80677604970000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Start Preview"/>
+                                        <state key="normal" title="Take New Scan"/>
+                                        <connections>
+                                            <action selector="startPreviewPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Puy-o3-ipc"/>
+                                        </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QdH-eP-lqJ">
                                         <rect key="frame" x="120" y="534" width="173" height="51"/>
@@ -39,6 +42,9 @@
                                         <state key="normal" title="Save Mesh">
                                             <color key="titleColor" red="0.035738641109999997" green="0.85743199479999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
+                                        <connections>
+                                            <action selector="saveMeshPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FBb-Ib-o6G"/>
+                                        </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eqS-l6-fxd">
                                         <rect key="frame" x="139" y="291" width="124" height="34"/>
