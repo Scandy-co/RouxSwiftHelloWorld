@@ -110,7 +110,6 @@ After the scanner is initialized, we can either start the preview or configure t
 
 From there we are ready to start the scanning process.
 
-
 ```
 // ViewController.swift
 // example file
@@ -126,6 +125,41 @@ From there we are ready to start the scanning process.
     } 	
   } 
 }
+```
 
 
+### Scandy Core Delegate
+The ScandyCoreDelegate allows us to listen to events on the Scandy Core View. In order to use the delegate you must adopt the protocol:
+
+```
+class ViewController: GLKViewController, ScandyCoreDelegate {
+```
+
+and set the delegate to self:
+
+```
+override func viewDidLoad() {
+    super.viewDidLoad()
+    ScandyCore.setDelegate(self)
+}
+```
+
+Then, implement all the required methods:
+
+```
+func onVisualizerReady(_ status: ScandyCoreStatus){
+  print("Visualizer ready)
+}
+func onScannerReady(_ status: ScandyCoreStatus)
+func onPreviewStart(_ status: ScandyCoreStatus)
+func onScannerStart(_ status: ScandyCoreStatus)
+func onScannerStop(_ status: ScandyCoreStatus)
+func onGenerateMesh(_ status: ScandyCoreStatus)
+func onSaveMesh(_ status: ScandyCoreStatus)
+func onLoadMesh(_ status: ScandyCoreStatus)
+func onClientConnected(_ host: String!)
+func onClientDisconnected(_ host: String!)
+func onHostDiscovered(_ host: String!)
+func onTrackingDidUpdate(_ confidence: Float, withTracking is_tracking: Bool)
+func onVolumeMemoryDidUpdate(_ percent_full: Float)
 ```
