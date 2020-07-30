@@ -8,7 +8,59 @@
 
 import GLKit
 
-class ViewController: GLKViewController {
+class ViewController: GLKViewController, ScandyCoreDelegate {
+    func onTrackingDidUpdate(_ confidence: Float, withTracking is_tracking: Bool) {
+        print("tracking updated. confidence: \(confidence) is_tracking: \(is_tracking)")
+    }
+    
+    func onVolumeMemoryDidUpdate(_ percent_full: Float) {
+        print("volume updated: \(percent_full)")
+    }
+    
+    func onVisualizerReady(_ createdVisualizer: Bool) {
+        print("visualizer ready: \(createdVisualizer)")
+    }
+    
+    func onScannerReady(_ status: ScandyCoreStatus) {
+        print("scanner ready: \(status)")
+    }
+    
+    func onPreviewStart(_ status: ScandyCoreStatus) {
+        print("preview started: \(status)")
+    }
+    
+    func onScannerStart(_ status: ScandyCoreStatus) {
+        print("scanner started: \(status)")
+    }
+    
+    func onScannerStop(_ status: ScandyCoreStatus) {
+        print("scanner stopped: \(status)")
+    }
+    
+    func onGenerateMesh(_ status: ScandyCoreStatus) {
+        print("generate mesh: \(status)")
+    }
+    
+    func onSaveMesh(_ status: ScandyCoreStatus) {
+        print("mesh saved: \(status)")
+    }
+    
+    func onLoadMesh(_ status: ScandyCoreStatus) {
+        print("mesh loaded: \(status)")
+    }
+    
+    func onClientConnected(_ host: String!) {
+        print("client connected: \(host)")
+    }
+    
+    func onClientDisconnected(_ host: String!) {
+        print("client disconnected: \(host)")
+    }
+    
+    func onHostDiscovered(_ host: String!) {
+        print("host discovered: \(host)")
+    }
+    
     //MARK: Global variables
     var SCAN_MODE_V2 = true;
     
@@ -77,6 +129,7 @@ class ViewController: GLKViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ScandyCore.setDelegate(self)
         // Set the ScandyCoreLicense.txt
         let status = ScandyCore.setLicense()
         print("license status: ", status)
