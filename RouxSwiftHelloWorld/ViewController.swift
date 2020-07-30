@@ -10,59 +10,95 @@ import GLKit
 
 class ViewController: GLKViewController, ScandyCoreDelegate {
     func onTrackingDidUpdate(_ confidence: Float, withTracking is_tracking: Bool) {
-        print("tracking updated. confidence: \(confidence) is_tracking: \(is_tracking)")
+        DispatchQueue.main.async {
+            print("tracking updated. confidence: \(confidence) is_tracking: \(is_tracking)")
+        }
     }
     
     func onVolumeMemoryDidUpdate(_ percent_full: Float) {
-        print("volume updated: \(percent_full)")
+        DispatchQueue.main.async {
+            print("volume updated: \(percent_full)")
+        }
     }
     
     func onVisualizerReady(_ createdVisualizer: Bool) {
-        print("visualizer ready: \(createdVisualizer)")
+        DispatchQueue.main.async {
+            print("visualizer ready: \(createdVisualizer)")}
     }
     
     func onScannerReady(_ status: ScandyCoreStatus) {
-        print("scanner ready: \(status)")
+        DispatchQueue.main.async {
+            print("scanner ready: \(status)")
+            if( self.requestCamera() ) {
+                ScandyCore.startPreview()
+                self.setResolution();
+            }
+        }
     }
     
     func onPreviewStart(_ status: ScandyCoreStatus) {
-        print("preview started: \(status)")
+        DispatchQueue.main.async {
+            print("preview started: \(status)")
+            self.renderPreviewScreen();
+        }
     }
     
     func onScannerStart(_ status: ScandyCoreStatus) {
-        print("scanner started: \(status)")
+        DispatchQueue.main.async {
+            print("scanner started: \(status)")
+            self.renderScanningScreen();
+        }
     }
     
     func onScannerStop(_ status: ScandyCoreStatus) {
-        print("scanner stopped: \(status)")
+        DispatchQueue.main.async {
+            print("scanner stopped: \(status)")
+            ScandyCore.generateMesh();
+        }
     }
     
     func onGenerateMesh(_ status: ScandyCoreStatus) {
-        print("generate mesh: \(status)")
+        DispatchQueue.main.async {
+            print("generate mesh: \(status)")
+            self.renderMeshScreen();
+        }
     }
     
     func onSaveMesh(_ status: ScandyCoreStatus) {
-        print("mesh saved: \(status)")
+        DispatchQueue.main.async {
+            print("mesh saved: \(status)")
+            let alertController = UIAlertController(title: "Mesh Saved", message:
+                "file saved to \(self.meshPath)", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { _ in
+                ScandyCore.startPreview();
+            }))
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
     
     func onLoadMesh(_ status: ScandyCoreStatus) {
-        print("mesh loaded: \(status)")
+        DispatchQueue.main.async {
+            print("mesh loaded: \(status)")}
     }
     
     func onClientConnected(_ host: String!) {
-        print("client connected: \(host)")
+        DispatchQueue.main.async {
+            print("client connected: \(String(describing: host))")}
     }
     
     func onClientDisconnected(_ host: String!) {
-        print("client disconnected: \(host)")
+        DispatchQueue.main.async {
+            print("client disconnected: \(String(describing: host))")}
     }
     
     func onHostDiscovered(_ host: String!) {
-        print("host discovered: \(host)")
+        DispatchQueue.main.async {
+            print("host discovered: \(String(describing: host))")}
     }
     
     //MARK: Global variables
-    var SCAN_MODE_V2 = true;
+    var v2Enabled = true;
+    var meshPath = ""
     
     //MARK: Properties
     @IBOutlet weak var stopScanButton: UIButton!
@@ -77,8 +113,7 @@ class ViewController: GLKViewController, ScandyCoreDelegate {
     //MARK: Actions
     
     @IBAction func startScanningPressed(_ sender: Any) {
-        print("start scanning pressed");
-        startScanning();
+        ScandyCore.startScanning();
     }
     
     @IBAction func scanSizeChanged(_ sender: Any) {
@@ -86,18 +121,14 @@ class ViewController: GLKViewController, ScandyCoreDelegate {
     }
     
     @IBAction func toggleV2(_ sender: Any) {
-        SCAN_MODE_V2 = v2ModeSwitch.isOn;
+        v2Enabled = v2ModeSwitch.isOn;
         ScandyCore.uninitializeScanner();
         ScandyCore.toggleV2Scanning(v2ModeSwitch.isOn);
-        let scanner_type: ScandyCoreScannerType = ScandyCoreScannerType(rawValue: 5);
-        ScandyCore.initializeScanner(scanner_type)
-        ScandyCore.startPreview()
+        ScandyCore.initializeScanner();
     }
     
     @IBAction func stopScanningPressed(_ sender: Any) {
-        print("stop scanning pressed");
-        stopScanning();
-        ScandyCore.generateMesh();
+        ScandyCore.stopScanning();
     }
     
     @IBAction func saveMeshPressed(_ sender: Any) {
@@ -111,30 +142,22 @@ class ViewController: GLKViewController, ScandyCoreDelegate {
         let documentspath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0];
         let documentsURL = URL(fileURLWithPath: documentspath);
         let fileURL = documentsURL.appendingPathComponent(filename);
-        let filepath = fileURL.path;
-        print("saving file to \(filepath)");
-        let alertController = UIAlertController(title: "Mesh Saved", message:
-            "file saved to \(filepath)", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
-        ScandyCore.saveMesh(filepath);
-        self.present(alertController, animated: true, completion: nil)
-        
+        meshPath = fileURL.path;
+        print("saving file to \(meshPath)");
+        ScandyCore.saveMesh(meshPath);
     }
     
     @IBAction func startPreviewPressed(_ sender: Any) {
-        print("start preview pressed");
-        turnOnScanner();
+        ScandyCore.startPreview();
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        ScandyCore.setDelegate(self)
-        // Set the ScandyCoreLicense.txt
-        let status = ScandyCore.setLicense()
-        print("license status: ", status)
-        // call our function to start ScandyCore
-        turnOnScanner();
+        ScandyCore.setDelegate(self)    //So we can use event listeners
+        ScandyCore.setLicense()         //Searches main bundle for ScandyCoreLicense.txt
+        ScandyCore.initializeScanner()  //Initialize scanner (true depth by default)
+        //        ScandyCore.initializeScanner(ScandyCoreScannerType(rawValue: 5))  //Initialize as true depth scanner - same as calling intializeScanner()
     }
     
     func requestCamera() -> Bool {
@@ -148,21 +171,8 @@ class ViewController: GLKViewController, ScandyCoreDelegate {
         return false
     }
     
-    
-    func turnOnScanner() {
-        renderPreviewScreen();
-        
-        if( requestCamera() ) {
-            //Default to scan mode v2
-            ScandyCore.toggleV2Scanning(SCAN_MODE_V2);
-            ScandyCore.initializeScanner()
-            ScandyCore.startPreview()
-            setResolution();
-        }
-    }
-    
     func setResolution(){
-        if(SCAN_MODE_V2){
+        if(v2Enabled){
             let minRes = 0.0005; // == 0.5 mm
             let maxRes = 0.006 // == 4 mm
             let range = maxRes - minRes;
@@ -184,15 +194,6 @@ class ViewController: GLKViewController, ScandyCoreDelegate {
         }
     }
     
-    func startScanning() {
-        renderScanningScreen();
-        ScandyCore.startScanning();
-    }
-    
-    func stopScanning() {
-        renderMeshScreen();
-        ScandyCore.stopScanning();
-    }
     
     func renderPreviewScreen(){
         scanSizeLabel.isHidden = false;
@@ -207,7 +208,6 @@ class ViewController: GLKViewController, ScandyCoreDelegate {
     }
     
     func renderScanningScreen(){
-        //Render our buttons
         stopScanButton.isHidden = false;
         
         startScanButton.isHidden = true;
