@@ -10,15 +10,17 @@ import GLKit
 
 class ViewController: GLKViewController, ScandyCoreDelegate {
     func onTrackingDidUpdate(_ confidence: Float, withTracking is_tracking: Bool) {
-        DispatchQueue.main.async {
-            print("tracking updated. confidence: \(confidence) is_tracking: \(is_tracking)")
-        }
+        // NOTE: this is a very active callback, so don't log it as it will slow everything to a crawl
+        // DispatchQueue.main.async {
+        // print("tracking updated. confidence: \(confidence) is_tracking: \(is_tracking)")
+        // }
     }
     
     func onVolumeMemoryDidUpdate(_ percent_full: Float) {
-        DispatchQueue.main.async {
-            print("volume updated: \(percent_full)")
-        }
+        // NOTE: this is a very active callback, so don't log it as it will slow everything to a crawl
+        // DispatchQueue.main.async {
+        // print("volume updated: \(percent_full)")
+        // }
     }
     
     func onVisualizerReady(_ createdVisualizer: Bool) {
