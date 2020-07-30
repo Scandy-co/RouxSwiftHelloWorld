@@ -31,9 +31,11 @@ class ViewController: GLKViewController, ScandyCoreDelegate {
     func onScannerReady(_ status: ScandyCoreStatus) {
         DispatchQueue.main.async {
             print("scanner ready: \(status)")
-            if( self.requestCamera() ) {
-                ScandyCore.startPreview()
-                self.setResolution();
+            if(status == self.SUCCESS){
+                if( self.requestCamera() ) {
+                    ScandyCore.startPreview()
+                    self.setResolution();
+                }
             }
         }
     }
@@ -41,40 +43,49 @@ class ViewController: GLKViewController, ScandyCoreDelegate {
     func onPreviewStart(_ status: ScandyCoreStatus) {
         DispatchQueue.main.async {
             print("preview started: \(status)")
-            self.renderPreviewScreen();
+            if(status == self.SUCCESS){
+                self.renderPreviewScreen();
+            }
         }
     }
     
     func onScannerStart(_ status: ScandyCoreStatus) {
         DispatchQueue.main.async {
             print("scanner started: \(status)")
-            self.renderScanningScreen();
+            if(status == self.SUCCESS){
+                self.renderScanningScreen();
+            }
         }
     }
     
     func onScannerStop(_ status: ScandyCoreStatus) {
         DispatchQueue.main.async {
             print("scanner stopped: \(status)")
-            ScandyCore.generateMesh();
+            if(status == self.SUCCESS){
+                ScandyCore.generateMesh();}
         }
     }
     
     func onGenerateMesh(_ status: ScandyCoreStatus) {
         DispatchQueue.main.async {
             print("generate mesh: \(status)")
-            self.renderMeshScreen();
+            if(status == self.SUCCESS){
+                self.renderMeshScreen();
+            }
         }
     }
     
     func onSaveMesh(_ status: ScandyCoreStatus) {
         DispatchQueue.main.async {
-            print("mesh saved: \(status)")
-            let alertController = UIAlertController(title: "Mesh Saved", message:
-                "file saved to \(self.meshPath)", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { _ in
-                ScandyCore.startPreview();
-            }))
-            self.present(alertController, animated: true, completion: nil)
+            if(status == self.SUCCESS){
+                print("mesh saved: \(status)")
+                let alertController = UIAlertController(title: "Mesh Saved", message:
+                    "file saved to \(self.meshPath)", preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { _ in
+                    ScandyCore.startPreview();
+                }))
+                self.present(alertController, animated: true, completion: nil)
+            }
         }
     }
     
@@ -101,6 +112,7 @@ class ViewController: GLKViewController, ScandyCoreDelegate {
     //MARK: Global variables
     var v2Enabled = true;
     var meshPath = ""
+    var SUCCESS = ScandyCoreStatus(rawValue: 0)
     
     //MARK: Properties
     @IBOutlet weak var stopScanButton: UIButton!
