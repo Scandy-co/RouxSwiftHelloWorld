@@ -1,5 +1,6 @@
 # test data
 tmp/
+.DS_Store
 
 # ScandyCore
 ScandyCoreLicense.txt
