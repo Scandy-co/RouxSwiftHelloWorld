@@ -9,14 +9,14 @@
 import GLKit
 
 class ViewController: GLKViewController, ScandyCoreDelegate {
-    func onTrackingDidUpdate(_ confidence: Float, withTracking is_tracking: Bool) {
+    func onTrackingDidUpdate(_ confidence: Double, withTracking is_tracking: Bool) {
         // NOTE: this is a very active callback, so don't log it as it will slow everything to a crawl
         // DispatchQueue.main.async {
         // print("tracking updated. confidence: \(confidence) is_tracking: \(is_tracking)")
         // }
     }
     
-    func onVolumeMemoryDidUpdate(_ percent_full: Float) {
+    func onVolumeMemoryDidUpdate(_ percent_full: Double) {
         // NOTE: this is a very active callback, so don't log it as it will slow everything to a crawl
         // DispatchQueue.main.async {
         // print("volume updated: \(percent_full)")
