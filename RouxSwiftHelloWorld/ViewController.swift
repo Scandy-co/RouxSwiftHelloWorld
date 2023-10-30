@@ -9,6 +9,44 @@
 import GLKit
 
 class ViewController: GLKViewController, ScandyCoreDelegate {
+  func onInitializeScanner(_ status: ScandyCoreStatus) {
+    DispatchQueue.main.async {
+        print("scanner ready: \(status)")
+        if(status == self.SUCCESS){
+            if( self.requestCamera() ) {
+                ScandyCore.startPreview()
+                self.setResolution();
+            }
+        }
+    }
+  }
+  
+  func onStartPreview(_ status: ScandyCoreStatus) {
+    DispatchQueue.main.async {
+        print("preview started: \(status)")
+        if(status == self.SUCCESS){
+            self.renderPreviewScreen();
+        }
+    }
+  }
+  
+  func onStartScanning(_ status: ScandyCoreStatus) {
+    DispatchQueue.main.async {
+        print("scanner started: \(status)")
+        if(status == self.SUCCESS){
+            self.renderScanningScreen();
+        }
+    }
+  }
+  
+  func onStopScanning(_ status: ScandyCoreStatus) {
+    DispatchQueue.main.async {
+        print("scanner stopped: \(status)")
+        if(status == self.SUCCESS){
+            ScandyCore.generateMesh();}
+    }
+  }
+  
     func onTrackingDidUpdate(_ confidence: Double, withTracking is_tracking: Bool) {
         // NOTE: this is a very active callback, so don't log it as it will slow everything to a crawl
         // DispatchQueue.main.async {
@@ -27,44 +65,7 @@ class ViewController: GLKViewController, ScandyCoreDelegate {
         DispatchQueue.main.async {
             print("visualizer ready: \(createdVisualizer)")}
     }
-    
-    func onScannerReady(_ status: ScandyCoreStatus) {
-        DispatchQueue.main.async {
-            print("scanner ready: \(status)")
-            if(status == self.SUCCESS){
-                if( self.requestCamera() ) {
-                    ScandyCore.startPreview()
-                    self.setResolution();
-                }
-            }
-        }
-    }
-    
-    func onPreviewStart(_ status: ScandyCoreStatus) {
-        DispatchQueue.main.async {
-            print("preview started: \(status)")
-            if(status == self.SUCCESS){
-                self.renderPreviewScreen();
-            }
-        }
-    }
-    
-    func onScannerStart(_ status: ScandyCoreStatus) {
-        DispatchQueue.main.async {
-            print("scanner started: \(status)")
-            if(status == self.SUCCESS){
-                self.renderScanningScreen();
-            }
-        }
-    }
-    
-    func onScannerStop(_ status: ScandyCoreStatus) {
-        DispatchQueue.main.async {
-            print("scanner stopped: \(status)")
-            if(status == self.SUCCESS){
-                ScandyCore.generateMesh();}
-        }
-    }
+  
     
     func onGenerateMesh(_ status: ScandyCoreStatus) {
         DispatchQueue.main.async {
